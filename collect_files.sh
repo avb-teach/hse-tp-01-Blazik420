@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-exit 0
+python3 collect_files.py "$1" "$2"
+
