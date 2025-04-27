@@ -20,7 +20,7 @@ dist_dir.mkdir(parents=True, exist_ok=True)
 file_counts = {}
 for current_dir, subdirs, file_names in os.walk(start_dir):
     if args.max_depth is not None:
-        depth = len(Path(current_dir).relative_to(start_dir).parts) + 1
+        depth = len(Path(current_dir).relative_to(start_dir).parts)
         if depth >= args.max_depth:
             subdirs.clear()
     for file_cur in file_names:
