@@ -16,12 +16,14 @@ args = parser.parse_args()
 start_dir = Path(args.start_dir).resolve()
 dist_dir  = Path(args.dist_dir).resolve()
 dist_dir.mkdir(parents=True, exist_ok=True)
-
+max_depth = args.max_depth
 file_counts = {}
 for current_dir, subdirs, file_names in os.walk(start_dir):
-    if args.max_depth is not None:
-        depth = len(Path(current_dir).relative_to(start_dir).parts)
-        if depth >= args.max_depth:
+    depth = len(Path(current_dir).relative_to(start_dir).parts)
+    if max_depth is not None:
+        if depth > max_depth:
+            continue
+        if depth == max_depth:
             subdirs.clear()
     for file_cur in file_names:
         src_path = Path(current_dir) / file_cur
