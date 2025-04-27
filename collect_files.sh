@@ -1,3 +1,2 @@
-input_dir="$1"
-output_dir="$2"
-mkdir -p "$output_dir"
+#!/usr/bin/env bash
+python3 collect_files.py "$1" "$2"
