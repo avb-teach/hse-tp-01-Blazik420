@@ -1,2 +1,2 @@
-#!/usr/bin/env bash python3
+#!/bin/bash
 python3 collect_files.py "$@"
