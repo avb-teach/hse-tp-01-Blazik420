@@ -28,6 +28,9 @@ for current_dir, subdirs, file_names in os.walk(start_dir):
         if len(parts) >= max_depth:     
             parts = parts[:max_depth]
 
+
+
+
     new_fold = dist_dir.joinpath(*parts)
     new_fold.mkdir(parents=True, exist_ok=True)
 
