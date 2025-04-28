@@ -20,13 +20,11 @@ max_depth = args.max_depth
 file_counts = {}
 for current_dir, subdirs, file_names in os.walk(start_dir):
     depth = len(Path(current_dir).relative_to(start_dir).parts)
-    if max_depth is not None:
-        if depth > max_depth:
-            continue
-        if depth == max_depth:
-            subdirs.clear()
     rel = Path(current_dir).relative_to(start_dir)
-    new_fold = dist_dir / rel
+    parts = rel.parts
+    if max_depth is not None and len(parts) > max_depth:
+        parts = parts[:max_depth]
+    new_fold = dist_dir.joinpath(*parts)
     new_fold.mkdir(parents=True, exist_ok=True)
 
 
