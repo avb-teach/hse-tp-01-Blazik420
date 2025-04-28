@@ -25,6 +25,11 @@ for current_dir, subdirs, file_names in os.walk(start_dir):
             continue
         if depth == max_depth:
             subdirs.clear()
+    rel = Path(current_dir).relative_to(start_dir)
+    new_fold = dist_dir / rel
+    new_fold.mkdir(parents=True, exist_ok=True)
+
+
     for file_cur in file_names:
         src_path = Path(current_dir) / file_cur
         n = file_counts.get(file_cur, 0)
@@ -40,4 +45,4 @@ for current_dir, subdirs, file_names in os.walk(start_dir):
                 base = file_cur
                 ext  = ""
             new_name = f"{base}{n}{ext}"
-        shutil.copy2(src_path, dist_dir / new_name)
+        shutil.copy2(src_path, new_fold / new_name)
